@@ -2,7 +2,8 @@ import numpy as np
 
 
 def unit_step_func(x):
-    return np.where(x > 0 , 1, 0)
+    return np.where(x > 0, 1, 0)
+
 
 class Perceptron:
 
@@ -13,7 +14,6 @@ class Perceptron:
         self.weights = None
         self.bias = None
 
-
     def fit(self, X, y):
         n_samples, n_features = X.shape
 
@@ -21,7 +21,7 @@ class Perceptron:
         self.weights = np.zeros(n_features)
         self.bias = 0
 
-        y_ = np.where(y > 0 , 1, 0)
+        y_ = np.where(y > 0, 1, 0)
 
         # learn weights
         for _ in range(self.n_iters):
@@ -33,7 +33,6 @@ class Perceptron:
                 update = self.lr * (y_[idx] - y_predicted)
                 self.weights += update * x_i
                 self.bias += update
-
 
     def predict(self, X):
         linear_output = np.dot(X, self.weights) + self.bias
@@ -48,9 +47,11 @@ if __name__ == "__main__":
     from sklearn.model_selection import train_test_split
     from sklearn import datasets
 
+
     def accuracy(y_true, y_pred):
         accuracy = np.sum(y_true == y_pred) / len(y_true)
         return accuracy
+
 
     X, y = datasets.make_blobs(
         n_samples=150, n_features=2, centers=2, cluster_std=1.05, random_state=2
